@@ -4,6 +4,7 @@ class StatusPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white12,
       appBar: AppBar(
         backgroundColor: Color(0xFF075E54),
         title: Text(

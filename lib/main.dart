@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: const MyHomePage(title: 'Whats App'),
+      home: const MyHomePage(title: 'Whats App'),
       //   home: ChatPage(),
-        home: StatusPage(),
+      //   home: StatusPage(),
 
     );
   }
