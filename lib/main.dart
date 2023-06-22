@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/statusPage.dart';
 
 import 'chatPage.dart';
 
@@ -17,9 +18,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Whats App'),
+      // home: const MyHomePage(title: 'Whats App'),
       //   home: ChatPage(),
-
+        home: StatusPage(),
 
     );
   }
@@ -35,13 +36,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int color1 = 0;
+  int color2 = 0;
+  int color3 = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           Container(
             width: double.infinity,
-            height: Height * .15,
+            height: Height * .18,
             color: Colors.black87,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -114,18 +112,60 @@ class _MyHomePageState extends State<MyHomePage> {
                       size: 25,
                     ),
 
-                  Text("Chats", style: TextStyle(
-                      color: Colors.white70,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),),
-                  Text("Status", style: TextStyle(
-                      color: Colors.white70,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),),
-                  Text("Calls", style: TextStyle(
-                      color: Colors.white70,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18),),
+                  TextButton(
+                    onPressed: (){
+
+                      setState(() {
+
+
+                        color1 = 1;
+                        color2 = 0;
+                        color3 = 0;
+
+                      });
+
+
+                    },
+                    child: Text("Chats", style: TextStyle(
+                        color: color1 == 1? Colors.green: Colors.white70,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),),
+                  ),
+                    TextButton(
+                      onPressed: (){
+
+                        setState(() {
+                          color1 = 0;
+                          color2 = 1;
+                          color3 = 0;
+
+                        });
+
+
+                      },
+
+                      child: Text("Status", style: TextStyle(
+                          color: color1 == 1? Colors.green: Colors.white70,
+                          fontWeight: FontWeight.bold,
+                        fontSize: 18),),
+                  ),
+                  TextButton(
+                    onPressed: (){
+                      setState(() {
+                        color1 = 0;
+                        color2 = 0;
+                        color3 = 1;
+
+                      });
+
+                    },
+
+
+                    child: Text("Calls", style: TextStyle(
+                        color: color1 == 1? Colors.green: Colors.white70,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),),
+                  ),
 
                 ],),
 
@@ -140,21 +180,27 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
 
 
-          SingleChildScrollView(child: Column(children: [
+          Container(
+            height: Height * .82,
+            child: SingleChildScrollView(child: Column(children: [
 
-            Chat(),
-            Chat(),
+              Chat(),
+              Chat(),
+              Chat(),
+              Chat(),
+              Chat(),
 
-            Chat(),
-            Chat(),
-            Chat(),
-            Chat(),
-            Chat(),
+              Chat(),
+              Chat(),
+              Chat(),
+              Chat(),
+              Chat(),
 
 
 
 
-          ],),),
+            ],),),
+          ),
 
 
 
@@ -164,7 +210,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.green,
-        onPressed: _incrementCounter,
+        onPressed: (){},
         tooltip: 'Increment',
         child: const Icon(Icons.message_outlined),
       ),
@@ -184,53 +230,69 @@ class _ChatState extends State<Chat> {
   Widget build(BuildContext context) {
     final Height = MediaQuery.of(context).size.height;
 
-    return TextButton(
-      onPressed: (){},
-      child: Container(
-        width: double.infinity,
-        height: Height * .1,
-        child: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              CircleAvatar(radius: 30,backgroundColor: Colors.white70),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Container(
+      width: double.infinity,
+      height: Height * .1,
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            TextButton(
+                onPressed: (){
+
+
+                },
+                child: CircleAvatar(radius: 30,backgroundColor: Colors.white70)),
+
+
+            TextButton(
+              onPressed: (){
+
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ChatPage()));
+
+
+              },
+              child: Row(
                 children: [
-                Text("Flutter Team", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
-                Row(
-                  children: [
-                    
-                    Icon(Icons.check,color: Colors.white70,size: 18,),
-                    Text("This is a Sample Text for Example", style: TextStyle(fontSize: 12, color: Colors.white70),),
-                  ],
-                )
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                    Text("Flutter Team", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
+                    Row(
+                      children: [
 
-                
-              ],),
-
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-
-                Text("14/06/2023", style: TextStyle(fontSize: 12, color: Colors.white70),),
-                  Icon(
-                    Icons.add,
-                    color: Colors.white70,
-                    size: 18,
-                  ),
+                        Icon(Icons.check,color: Colors.white70,size: 18,),
+                        Text("This is a Sample Text for Example", style: TextStyle(fontSize: 12, color: Colors.white70),),
+                      ],
+                    )
 
 
-              ],),
+                  ],),
+
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+
+                    Text("14/06/2023", style: TextStyle(fontSize: 12, color: Colors.white70),),
+                      Icon(
+                        Icons.add,
+                        color: Colors.white70,
+                        size: 18,
+                      ),
+
+
+                  ],),
+                ],
+              ),
+            ),
 
 
 
 
-            ],
-          ),
+          ],
         ),
       ),
     );
