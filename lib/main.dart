@@ -81,9 +81,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: Container(
-                          width: Widget * 0.25,
+                          width: Widget * 0.35,
                           child: Row(
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               TextButton(
                                 onPressed: (){
