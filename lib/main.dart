@@ -1,9 +1,15 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/cameraPreview.dart';
 import 'package:whatsapp_clone/statusPage.dart';
 
 import 'chatPage.dart';
+late List<CameraDescription> _cameras;
 
-void main() {
+Future<void> main() async{
+    WidgetsFlutterBinding.ensureInitialized();
+
+  _cameras = await availableCameras();
   runApp(const MyApp());
 }
 
@@ -75,14 +81,21 @@ class _MyHomePageState extends State<MyHomePage> {
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: Container(
-                          width: Widget * 0.25,
+                          width: Widget * 0.35,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Icon(
-                                Icons.camera_alt,
-                                color: Colors.white70,
-                                size: 25,
+                              TextButton(
+                                onPressed: (){
+                                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => CameraApp(cameras: _cameras,)));
+
+
+                                },
+                                child: Icon(
+                                  Icons.camera_alt,
+                                  color: Colors.white70,
+                                  size: 25,
+                                ),
                               ),
                               Icon(
                                 Icons.search,
@@ -250,6 +263,10 @@ class _ChatState extends State<Chat> {
               onPressed: (){
 
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ChatPage()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ChatPage()));
+
+
+
 
 
               },
